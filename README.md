@@ -1,17 +1,23 @@
 SimpleDiscord.js
 
-<div align="center">SimpleDiscord.js
-
-A lightweight, developer-friendly Discord bot library for Node.js
-
-Build Discord bots with a simple API, powerful builders, and minimal setup.
-
-""npm" (https://img.shields.io/npm/v/simple-discord-bot.js?style=for-the-badge)" (https://www.npmjs.com/package/simple-discord-bot.js)
-""npm downloads" (https://img.shields.io/npm/dm/simple-discord-bot.js?style=for-the-badge)" (https://www.npmjs.com/package/simple-discord-bot.js)
-""license" (https://img.shields.io/npm/l/simple-discord-bot.js?style=for-the-badge)" (https://github.com/Frost-Dominus/SimpleDiscord.js/blob/main/LICENSE)
-""Node.js" (https://img.shields.io/badge/Node.js-18%2B-339933?style=for-the-badge&logo=node.js&logoColor=white)" (https://nodejs.org/)
-
-</div>---
+<p align="center">
+  <strong>A lightweight, developer-friendly Discord bot library for Node.js</strong>
+</p><p align="center">
+  Build Discord bots with a simple API, powerful builders, and minimal setup.
+</p><p align="center">
+  <a href="https://www.npmjs.com/package/simple-discord-bot.js">
+    <img src="https://img.shields.io/npm/v/simple-discord-bot.js?style=for-the-badge" alt="npm version">
+  </a>
+  <a href="https://www.npmjs.com/package/simple-discord-bot.js">
+    <img src="https://img.shields.io/npm/dm/simple-discord-bot.js?style=for-the-badge" alt="npm downloads">
+  </a>
+  <a href="https://github.com/coder-gpt/SimpleDiscord.js/blob/main/LICENSE">
+    <img src="https://img.shields.io/npm/l/simple-discord-bot.js?style=for-the-badge" alt="license">
+  </a>
+  <a href="https://nodejs.org/">
+    <img src="https://img.shields.io/badge/Node.js-18%2B-339933?style=for-the-badge&logo=node.js&logoColor=white" alt="Node.js 18+">
+  </a>
+</p>---
 
 📖 About
 
@@ -127,14 +133,14 @@ Make sure you have Node.js installed.
 
 npm install simple-discord-bot.js
 
-Create your project:
+Create a project:
 
 mkdir my-discord-bot
 cd my-discord-bot
 npm init -y
 npm install simple-discord-bot.js
 
-Create:
+Your project can look like:
 
 my-discord-bot/
 ├── index.js
@@ -154,8 +160,6 @@ https://discord.com/developers/applications
 
 Sign in with your Discord account.
 
----
-
 2. Create an Application
 
 Click:
@@ -170,8 +174,6 @@ SimpleBot
 
 Then click Create.
 
----
-
 3. Create the Bot
 
 Open your application and select:
@@ -184,15 +186,11 @@ Add Bot
 
 Confirm the creation.
 
----
-
 4. Get Your Bot Token
 
-Inside the Bot page, find the token section.
+Inside the Bot page, find the token section and copy your bot token.
 
-Copy your bot token.
-
-⚠️ Keep your token private
+«⚠️ Keep your token private.»
 
 Never upload your token to:
 
@@ -257,9 +255,7 @@ Then use the generated installation/invite link to add the bot to your server.
 
 Create "index.js":
 
-const {
-  Client
-} = require("simple-discord-bot.js")
+const { Client } = require("simple-discord-bot.js")
 
 const client = new Client()
 
@@ -407,22 +403,21 @@ The user can then use:
 
 🗑️ Command Management
 
-Remove a command:
+Remove a Command
 
 await client.removeCommand("hello")
 
 This removes the command from the local command collection and Discord.
 
-Check whether a command exists:
+Check Whether a Command Exists
 
 if (client.hasCommand("hello")) {
   console.log("Command exists!")
 }
 
-Get a command:
+Get a Command
 
-const command =
-  client.getCommand("hello")
+const command = client.getCommand("hello")
 
 ---
 
@@ -476,7 +471,7 @@ const embed =
       true
     )
 
-Add multiple fields:
+Add Multiple Fields
 
 embed.addFields(
   {
@@ -517,7 +512,7 @@ await interaction.reply({
   components: [row]
 })
 
-Handle the interaction:
+Handle the Interaction
 
 client.on(
   "interaction",
@@ -537,11 +532,11 @@ Button Styles
 
 SimpleDiscord.js supports:
 
-primary
-secondary
-success
-danger
-link
+- "primary"
+- "secondary"
+- "success"
+- "danger"
+- "link"
 
 ---
 
@@ -557,9 +552,7 @@ const {
 const menu =
   new SelectMenuBuilder()
     .setCustomId("color")
-    .setPlaceholder(
-      "Choose a color"
-    )
+    .setPlaceholder("Choose a color")
     .addOptions(
       {
         label: "Red",
@@ -587,7 +580,7 @@ await interaction.reply({
   components: [row]
 })
 
-Handle the selection:
+Handle the Selection
 
 client.on(
   "interaction",
@@ -611,15 +604,11 @@ Action rows organize Discord components.
 
 const row =
   new ActionRowBuilder()
-    .addComponents(
-      button
-    )
+    .addComponents(button)
 
-Replace all components:
+Replace All Components
 
-row.setComponents(
-  button
-)
+row.setComponents(button)
 
 ---
 
@@ -672,30 +661,26 @@ await interaction.deleteReply()
 
 💬 Messages
 
-Listen for messages:
+Listen for Messages
 
 client.on(
   "message",
   async message => {
-    console.log(
-      message.content
-    )
+    console.log(message.content)
   }
 )
 
-Reply:
+Reply
 
-await message.reply(
-  "Hello!"
-)
+await message.reply("Hello!")
 
-Edit:
+Edit
 
 await message.edit(
   "Edited message!"
 )
 
-Delete:
+Delete
 
 await message.delete()
 
@@ -708,7 +693,7 @@ SimpleDiscord.js provides Discord permission checking through "Permissions".
 const isAdmin =
   interaction.member.permissions.has(
     "Administrator"
-)
+  )
 
 if (!isAdmin) {
   await interaction.reply(
@@ -750,9 +735,7 @@ if (client.isReady()) {
 
 Get Uptime
 
-console.log(
-  client.uptime
-)
+console.log(client.uptime)
 
 The value is returned in milliseconds.
 
@@ -868,7 +851,7 @@ Builder| Purpose
 
 🗂️ Recommended Project Structure
 
-A simple project:
+Simple Project
 
 my-discord-bot/
 ├── index.js
@@ -876,7 +859,7 @@ my-discord-bot/
 ├── package-lock.json
 └── node_modules/
 
-For a larger bot:
+Larger Bot
 
 my-discord-bot/
 ├── index.js
@@ -940,7 +923,7 @@ Before deploying your bot, test:
 0.2.x — More Discord Features
 
 - ✅ Interaction improvements
-- ✅ ActionRowBuilder
+- ✅ "ActionRowBuilder"
 - ✅ Command management
 - ✅ Automatic command registration
 - ✅ API error handling
@@ -992,7 +975,7 @@ If you encounter a bug, please provide:
 - Error message
 - Steps to reproduce the issue
 
-Never include your Discord bot token in an issue.
+«Never include your Discord bot token in an issue.»
 
 ---
 
@@ -1000,7 +983,7 @@ Never include your Discord bot token in an issue.
 
 SimpleDiscord.js is released under the MIT License.
 
-See the ""LICENSE"" (LICENSE) file for the complete license text.
+See the "LICENSE" (https://github.com/coder-gpt/SimpleDiscord.js/blob/main/LICENSE) file for the complete license text.
 
 ---
 
@@ -1008,20 +991,16 @@ See the ""LICENSE"" (LICENSE) file for the complete license text.
 
 If SimpleDiscord.js is useful to you:
 
-⭐ Star the repository
-
-🐛 Report bugs
-
-💡 Suggest features
-
-🔧 Contribute improvements
-
-📦 Use it in your Discord projects
+- ⭐ Star the repository
+- 🐛 Report bugs
+- 💡 Suggest features
+- 🔧 Contribute improvements
+- 📦 Use it in your Discord projects
 
 ---
 
-<div align="center">Simple Discord bots. Simple API. SimpleDiscord.js.
-
-Made with ❤️ using JavaScript.
-
-</div>
+<p align="center">
+  <strong>Simple Discord bots. Simple API. SimpleDiscord.js.</strong>
+</p><p align="center">
+  Made with ❤️ using JavaScript.
+</p>
