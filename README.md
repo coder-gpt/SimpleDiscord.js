@@ -1,47 +1,41 @@
-<div align="center"><img src="assets/file_000000003e4082079abfdbd37db63419.png" width="180" alt="simple-discord-bot.js logo">simple-discord-bot.js
+<div align="center"><img src="assets/file_000000003e4082079abfdbd37db63419.png" width="180" alt="simple-discord-bot.js"><h1>simple-discord-bot.js</h1><p>A simple and lightweight Discord bot library for Node.js</p><p>
+  <a href="https://www.npmjs.com/package/simple-discord-bot.js">
+    <img src="https://img.shields.io/npm/v/simple-discord-bot.js?style=for-the-badge" alt="npm version">
+  </a>
+  <a href="https://www.npmjs.com/package/simple-discord-bot.js">
+    <img src="https://img.shields.io/npm/dm/simple-discord-bot.js?style=for-the-badge" alt="npm downloads">
+  </a>
+  <a href="https://github.com/YOUR_USERNAME/simple-discord-bot.js/blob/main/LICENSE">
+    <img src="https://img.shields.io/npm/l/simple-discord-bot.js?style=for-the-badge" alt="license">
+  </a>
+  <img src="https://img.shields.io/badge/Node.js-18%2B-339933?style=for-the-badge&logo=node.js&logoColor=white" alt="Node.js">
+</p><p>
+  <strong>Simple</strong> ·
+  <strong>Lightweight</strong> ·
+  <strong>Beginner Friendly</strong>
+</p></div>---
 
-A simple and lightweight Discord bot library for Node.js
+Features
 
-""npm version" (https://img.shields.io/npm/v/simple-discord-bot.js?style=for-the-badge)" (https://www.npmjs.com/package/simple-discord-bot.js)
-""npm downloads" (https://img.shields.io/npm/dm/simple-discord-bot.js?style=for-the-badge)" (https://www.npmjs.com/package/simple-discord-bot.js)
-""license" (https://img.shields.io/npm/l/simple-discord-bot.js?style=for-the-badge)" (https://github.com/YOUR_USERNAME/simple-discord-bot.js/blob/main/LICENSE)
-""Node.js" (https://img.shields.io/badge/Node.js-18%2B-339933?style=for-the-badge&logo=node.js&logoColor=white)" (https://nodejs.org/)
+- Lightweight Discord bot library
+- Simple API
+- Discord Gateway support
+- Slash commands
+- Command options
+- EmbedBuilder
+- Permission checking
+- Message events
+- Gateway heartbeat
+- Clean shutdown
+- npm package support
 
-Simple • Lightweight • Beginner Friendly
-
-</div>---
-
-🚀 Features
-
-- ⚡ Lightweight Discord bot library
-- 🧩 Simple beginner friendly API
-- 🤖 Discord Gateway support
-- ⚙️ Slash commands
-- 📝 Slash command options
-- 🎨 EmbedBuilder
-- 🔐 Permission checking
-- 💬 Message events
-- 💓 Gateway heartbeat
-- 🛑 Clean shutdown
-- 📦 Available through npm
-
----
-
-📦 Installation
-
-Install the package using npm
+Installation
 
 npm install simple-discord-bot.js
 
----
+Quick Start
 
-🚀 Quick Start
-
-Create your first bot
-
-const {
-  Client
-} = require("simple-discord-bot.js")
+const { Client } = require("simple-discord-bot.js")
 
 const client = new Client()
 
@@ -57,15 +51,7 @@ client.on("ready", () => {
 
 client.login("YOUR_BOT_TOKEN")
 
-Start your bot
-
-node index.js
-
----
-
-⚙️ Slash Commands
-
-Creating a slash command is simple
+Slash Commands
 
 client.command("hello", interaction => {
   interaction.reply("Hello!")
@@ -73,18 +59,7 @@ client.command("hello", interaction => {
   description: "Says hello"
 })
 
-Commands are automatically stored by the client and can be registered with Discord
-
-await client.api.registerCommands(
-  client.user.id,
-  [...client.commands.values()].map(command => command.command)
-)
-
----
-
-🧩 Command Options
-
-Commands can have options
+Command Options
 
 client.command("say", interaction => {
   interaction.reply(interaction.options.message)
@@ -100,89 +75,36 @@ client.command("say", interaction => {
   ]
 })
 
-Access the option using
+Access options with:
 
 interaction.options.message
 
----
+Embeds
 
-🎨 Embeds
-
-Create Discord embeds using "EmbedBuilder"
-
-const {
-  EmbedBuilder
-} = require("simple-discord-bot.js")
+const { EmbedBuilder } = require("simple-discord-bot.js")
 
 const embed = new EmbedBuilder()
   .setTitle("Hello")
   .setDescription("This is an embed!")
   .setColor("5865F2")
+  .setFooter("Made with simple-discord-bot.js")
   .setTimestamp()
 
 interaction.reply(embed)
 
 Embed Methods
 
-Title
-
 .setTitle("Hello")
-
-Description
-
-.setDescription("This is my description")
-
-Color
-
+.setDescription("Description")
 .setColor("5865F2")
-
-Hex colors are supported
-
-.setColor("FF0000")
-
-URL
-
 .setURL("https://example.com")
-
-Footer
-
-.setFooter("Made with simple-discord-bot.js")
-
-Footer Icon
-
-.setFooter(
-  "Made with simple-discord-bot.js",
-  "https://example.com/icon.png"
-)
-
-Author
-
-.setAuthor("SimpleBot")
-
-Author Icon
-
-.setAuthor(
-  "SimpleBot",
-  "https://example.com/icon.png"
-)
-
-Thumbnail
-
+.setFooter("Footer")
+.setAuthor("Author")
 .setThumbnail("https://example.com/image.png")
-
-Image
-
 .setImage("https://example.com/image.png")
-
-Timestamp
-
 .setTimestamp()
 
----
-
-🔐 Permissions
-
-Check Discord permissions easily
+Permissions
 
 client.command("admin", interaction => {
   if (!interaction.member?.permissions.has("Administrator")) {
@@ -194,39 +116,19 @@ client.command("admin", interaction => {
   description: "Administrator only command"
 })
 
-Supported permission checking includes Discord permission flags such as
+Messages
 
-Administrator
-ManageGuild
-ManageChannels
-ManageMessages
-SendMessages
-KickMembers
-BanMembers
-ManageRoles
-ManageWebhooks
-ViewChannel
-ReadMessageHistory
-
----
-
-💬 Messages
-
-Listen for messages
+Listen for messages:
 
 client.on("message", message => {
   console.log(message.content)
 })
 
-Reply to a message
+Reply to messages:
 
 message.reply("Hello!")
 
----
-
-📡 Events
-
-SimpleDiscord.js currently supports
+Events
 
 Event| Description
 "ready"| Bot is ready
@@ -234,33 +136,19 @@ Event| Description
 "error"| Gateway error
 "disconnect"| Bot disconnected
 
-Example
+Client
 
-client.on("ready", () => {
-  console.log("Bot is online!")
-})
+Create a client:
 
----
-
-🤖 Client
-
-Create a client
-
-const {
-  Client
-} = require("simple-discord-bot.js")
+const { Client } = require("simple-discord-bot.js")
 
 const client = new Client()
 
-"client.login(token)"
-
-Connect your bot to Discord
+Login:
 
 client.login("YOUR_BOT_TOKEN")
 
-"client.command(name, handler, options)"
-
-Create a slash command
+Create a command:
 
 client.command(
   "ping",
@@ -272,52 +160,19 @@ client.command(
   }
 )
 
-"client.destroy()"
-
-Disconnect the bot
+Disconnect:
 
 client.destroy()
 
----
-
-📡 API
-
-The library includes a simple Discord API wrapper
-
-client.api
-
-Register slash commands
-
-await client.api.registerCommands(
-  client.user.id,
-  commands
-)
-
----
-
-🛑 Clean Shutdown
-
-SimpleDiscord.js handles "Ctrl + C" automatically
-
-Stopping bot...
-
-The gateway connection is closed cleanly before the process exits
-
----
-
-📊 Current Version
+Current Version
 
 0.1.2
 
-SimpleDiscord.js is currently in early development
+SimpleDiscord.js is currently in early development.
 
-The API may change as new features are added
+Roadmap
 
----
-
-🗺️ Roadmap
-
-✅ Completed
+Completed
 
 - [x] Discord Gateway connection
 - [x] Gateway heartbeat
@@ -332,7 +187,7 @@ The API may change as new features are added
 - [x] EmbedBuilder
 - [x] npm publishing
 
-🚧 Planned
+Planned
 
 - [ ] Embed fields
 - [ ] Buttons
@@ -343,68 +198,20 @@ The API may change as new features are added
 - [ ] User objects
 - [ ] Message editing
 - [ ] Message deletion
-- [ ] More permission helpers
-- [ ] Better error handling
 - [ ] Automatic reconnection
 - [ ] Gateway resume support
 - [ ] More Discord API features
 
----
+Contributing
 
-📚 Why simple-discord-bot.js?
+Contributions and suggestions are welcome.
 
-Discord bot libraries can become complicated when you're just starting
+Feel free to open an issue or submit a pull request.
 
-simple-discord-bot.js focuses on keeping Discord bot development simple
+License
 
-const {
-  Client
-} = require("simple-discord-bot.js")
-
-const client = new Client()
-
-client.command("ping", interaction => {
-  interaction.reply("Pong!")
-})
-
-client.login("YOUR_BOT_TOKEN")
-
-Simple
-
-Lightweight
-
-Beginner Friendly
-
----
-
-📦 npm
-
-Install the latest version
-
-npm install simple-discord-bot.js
-
-View the package on npm
-
-""npm" (https://img.shields.io/badge/npm-simple--discord--bot.js-red?style=for-the-badge&logo=npm)" (https://www.npmjs.com/package/simple-discord-bot.js)
-
----
-
-🤝 Contributing
-
-Contributions and suggestions are welcome
-
-If you find a bug or have an idea for a feature you can open an issue or submit a pull request
-
----
-
-📄 License
-
-This project is licensed under the MIT License
-
----
+MIT License
 
 <div align="center">simple-discord-bot.js
-
-A simple Discord bot library for Node.js
 
 </div>
