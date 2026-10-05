@@ -1,4 +1,4 @@
-<div align="center"><img src="assets/logo.png" width="180" alt="simple-discord-bot.js logo">simple-discord-bot.js
+<div align="center"><img src="assets/file_000000003e4082079abfdbd37db63419.png" width="180" alt="simple-discord-bot.js logo">simple-discord-bot.js
 
 A simple and lightweight Discord bot library for Node.js
 
