@@ -299,10 +299,6 @@ The gateway connection is closed cleanly before the process exits.
 
 ---
 
-Current Version
-
-0.1.2
-
 SimpleDiscord.js is currently in early development.
 
 The API may change as the library continues to develop.
