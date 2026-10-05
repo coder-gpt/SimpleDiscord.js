@@ -1,396 +1,594 @@
-<div align="center"><img src="assets/file_000000003e4082079abfdbd37db63419.png" width="180" alt="simple-discord-bot.js"><h1>simple-discord-bot.js</h1><p>A simple and lightweight Discord bot library for Node.js</p><p>
-  <a href="https://www.npmjs.com/package/simple-discord-bot.js">
-    <img src="https://img.shields.io/npm/v/simple-discord-bot.js?style=for-the-badge" alt="npm version">
-  </a>
-  <a href="https://www.npmjs.com/package/simple-discord-bot.js">
-    <img src="https://img.shields.io/npm/dm/simple-discord-bot.js?style=for-the-badge" alt="npm downloads">
-  </a>
-  <a href="https://img.shields.io/npm/l/simple-discord-bot.js">
-    <img src="https://img.shields.io/npm/l/simple-discord-bot.js?style=for-the-badge" alt="license">
-  </a>
-  <img src="https://img.shields.io/badge/Node.js-18%2B-339933?style=for-the-badge&logo=node.js&logoColor=white" alt="Node.js">
-</p><p>
-  <strong>Simple</strong> ·
-  <strong>Lightweight</strong> ·
-  <strong>Beginner Friendly</strong>
-</p></div>---
+SimpleDiscord.js
 
-Features
+<div align="center">SimpleDiscord.js
 
-- Lightweight Discord bot library
-- Simple and beginner friendly API
-- Discord Gateway support
+A lightweight Discord bot library for Node.js
+
+Simple Discord bots without the complexity.
+
+""npm" (https://img.shields.io/npm/v/simple-discord-bot.js?style=for-the-badge)" (https://www.npmjs.com/package/simple-discord-bot.js)
+""npm downloads" (https://img.shields.io/npm/dm/simple-discord-bot.js?style=for-the-badge)" (https://www.npmjs.com/package/simple-discord-bot.js)
+""license" (https://img.shields.io/npm/l/simple-discord-bot.js?style=for-the-badge)" (https://github.com/)
+
+</div>---
+
+✨ Features
+
+SimpleDiscord.js is a lightweight Discord bot library designed to make building Discord bots simple.
+
+Core
+
+- Discord Gateway connection
+- Discord API support
 - Slash commands
-- Slash command options
-- EmbedBuilder
+- Command options
+- Automatic command registration
+- Command removal
+- Messages
+- Message replies
+- Message editing
+- Message deletion
 - Permission checking
-- Message events
-- Gateway heartbeat
-- Clean shutdown
-- Available through npm
+
+Components
+
+- "ActionRowBuilder"
+- "ButtonBuilder"
+- "SelectMenuBuilder"
+
+Embeds
+
+- Titles
+- Descriptions
+- Colors
+- URLs
+- Footers
+- Authors
+- Thumbnails
+- Images
+- Timestamps
+- Embed fields
+
+Interactions
+
+- Interaction replies
+- Deferred replies
+- Editing interaction replies
+- Deleting interaction replies
+- Button interactions
+- Select menu interactions
+
+Developer Utilities
+
+- "client.isReady()"
+- "client.uptime"
+- "client.applicationId"
+- "client.user"
+- "DiscordAPIError"
 
 ---
 
-Installation
-
-Install the package with npm
+📦 Installation
 
 npm install simple-discord-bot.js
 
 ---
 
-Quick Start
+🚀 Quick Start
 
-Create a simple Discord bot
-
-const { Client } = require("simple-discord-bot.js")
+const {
+  Client
+} = require("simple-discord-bot.js")
 
 const client = new Client()
 
-client.command("ping", interaction => {
-  interaction.reply("Pong!")
-}, {
-  description: "Replies with Pong!"
-})
-
-client.on("ready", () => {
-  console.log("Bot is online!")
-})
-
-client.login("YOUR_BOT_TOKEN")
-
-Start your bot with
-
-node index.js
-
----
-
-Slash Commands
-
-Create slash commands with "client.command()"
-
-client.command("hello", interaction => {
-  interaction.reply("Hello!")
-}, {
-  description: "Says hello"
-})
-
----
-
-Command Options
-
-Commands can have options
-
-client.command("say", interaction => {
-  interaction.reply(interaction.options.message)
-}, {
-  description: "Make the bot say something",
-  options: [
-    {
-      name: "message",
-      description: "The message to send",
-      type: 3,
-      required: true
-    }
-  ]
-})
-
-Access an option with
-
-interaction.options.message
-
----
-
-Embeds
-
-Create embeds with "EmbedBuilder"
-
-const { EmbedBuilder } = require("simple-discord-bot.js")
-
-const embed = new EmbedBuilder()
-  .setTitle("Hello")
-  .setDescription("This is an embed!")
-  .setColor("5865F2")
-  .setFooter("Made with simple-discord-bot.js")
-  .setTimestamp()
-
-interaction.reply(embed)
-
-Embed Methods
-
-Title
-
-embed.setTitle("Hello")
-
-Description
-
-embed.setDescription("This is my description")
-
-Color
-
-embed.setColor("5865F2")
-
-Hex colors are supported
-
-embed.setColor("FF0000")
-
-URL
-
-embed.setURL("https://example.com")
-
-Footer
-
-embed.setFooter("Made with simple-discord-bot.js")
-
-Footer Icon
-
-embed.setFooter(
-  "Made with simple-discord-bot.js",
-  "https://example.com/icon.png"
-)
-
-Author
-
-embed.setAuthor("SimpleBot")
-
-Author Icon
-
-embed.setAuthor(
-  "SimpleBot",
-  "https://example.com/icon.png"
-)
-
-Thumbnail
-
-embed.setThumbnail(
-  "https://example.com/image.png"
-)
-
-Image
-
-embed.setImage(
-  "https://example.com/image.png"
-)
-
-Timestamp
-
-embed.setTimestamp()
-
----
-
-Permissions
-
-Check Discord permissions with "interaction.member.permissions"
-
-client.command("admin", interaction => {
-  if (!interaction.member?.permissions.has("Administrator")) {
-    return interaction.reply("You need Administrator")
-  }
-
-  interaction.reply("You have Administrator permission!")
-}, {
-  description: "Administrator only command"
-})
-
-Example supported permissions include
-
-Administrator
-ManageGuild
-ManageChannels
-ManageMessages
-SendMessages
-KickMembers
-BanMembers
-ManageRoles
-ManageWebhooks
-ViewChannel
-ReadMessageHistory
-
----
-
-Messages
-
-Listen for messages
-
-client.on("message", message => {
-  console.log(message.content)
-})
-
-Reply to messages
-
-message.reply("Hello!")
-
----
-
-Events
-
-Event| Description
-"ready"| Bot is ready
-"message"| A message was created
-"error"| A gateway error occurred
-"disconnect"| Bot disconnected
-
-Example
-
-client.on("ready", () => {
-  console.log("Bot is online!")
-})
-
----
-
-Client
-
-Create a client
-
-const { Client } = require("simple-discord-bot.js")
-
-const client = new Client()
-
-Login
-
-Connect your bot to Discord
-
-client.login("YOUR_BOT_TOKEN")
-
-Commands
-
-Create a slash command
+const TOKEN = "YOUR_BOT_TOKEN"
 
 client.command(
   "ping",
-  interaction => {
-    interaction.reply("Pong!")
+  async interaction => {
+    await interaction.reply("Pong!")
   },
   {
     description: "Replies with Pong!"
   }
 )
 
-Destroy
+client.on("ready", () => {
+  console.log(
+    `Logged in as ${client.user.username}`
+  )
+})
 
-Disconnect the bot
+client.login(TOKEN)
 
-client.destroy()
+Commands registered with "client.command()" are automatically synchronized with Discord when the bot connects.
 
 ---
 
-API
+⚡ Slash Commands
 
-Access the Discord API wrapper through "client.api"
-
-client.api
-
-Register slash commands
-
-await client.api.registerCommands(
-  client.user.id,
-  commands
+client.command(
+  "hello",
+  async interaction => {
+    await interaction.reply("Hello!")
+  },
+  {
+    description: "Says hello!"
+  }
 )
 
 ---
 
-Clean Shutdown
+📝 Command Options
 
-SimpleDiscord.js handles "Ctrl + C" automatically
+client.command(
+  "say",
+  async interaction => {
+    await interaction.reply(
+      interaction.options.message
+    )
+  },
+  {
+    description: "Make the bot say something",
 
-Stopping bot...
-
-The gateway connection is closed cleanly before the process exits.
-
----
-
-SimpleDiscord.js is currently in early development.
-
-The API may change as the library continues to develop.
-
----
-
-Roadmap
-
-Completed
-
-- [x] Discord Gateway connection
-- [x] Gateway heartbeat
-- [x] Bot login
-- [x] Clean shutdown
-- [x] Ready event
-- [x] Message events
-- [x] Message replies
-- [x] Slash commands
-- [x] Slash command options
-- [x] Permission checking
-- [x] EmbedBuilder
-- [x] npm publishing
-
-Planned
-
-- [ ] Embed fields
-- [ ] Buttons
-- [ ] Select menus
-- [ ] More interaction types
-- [ ] Channel objects
-- [ ] Guild objects
-- [ ] User objects
-- [ ] Message editing
-- [ ] Message deletion
-- [ ] More permission helpers
-- [ ] Better error handling
-- [ ] Automatic reconnection
-- [ ] Gateway resume support
-- [ ] More Discord API features
+    options: [
+      {
+        type: 3,
+        name: "message",
+        description: "Message to send",
+        required: true
+      }
+    ]
+  }
+)
 
 ---
 
-Why simple-discord-bot.js?
+🗑️ Command Management
 
-Discord bot development can become complicated when you're just starting.
+Remove a command from Discord:
 
-simple-discord-bot.js focuses on keeping the API simple and easy to understand.
+await client.removeCommand("hello")
 
-A basic bot can be created with just a few lines
+Check whether a command exists:
 
-const { Client } = require("simple-discord-bot.js")
+client.hasCommand("hello")
 
-const client = new Client()
+Get a command:
 
-client.command("ping", interaction => {
-  interaction.reply("Pong!")
+const command =
+  client.getCommand("hello")
+
+---
+
+🎨 Embeds
+
+const {
+  EmbedBuilder
+} = require("simple-discord-bot.js")
+
+client.command(
+  "embed",
+  async interaction => {
+    const embed =
+      new EmbedBuilder()
+        .setTitle("Hello!")
+        .setDescription(
+          "This is an embed."
+        )
+        .setColor("#5865F2")
+        .setTimestamp()
+
+    await interaction.reply(embed)
+  }
+)
+
+Embed Fields
+
+const embed =
+  new EmbedBuilder()
+    .setTitle("User Information")
+    .addField(
+      "Username",
+      "SimpleBot",
+      true
+    )
+    .addField(
+      "Status",
+      "Online",
+      true
+    )
+
+Multiple fields:
+
+embed.addFields(
+  {
+    name: "Language",
+    value: "JavaScript",
+    inline: true
+  },
+  {
+    name: "Library",
+    value: "SimpleDiscord.js",
+    inline: true
+  }
+)
+
+---
+
+🔘 Buttons
+
+const {
+  ButtonBuilder,
+  ActionRowBuilder
+} = require("simple-discord-bot.js")
+
+client.command(
+  "button",
+  async interaction => {
+    const button =
+      new ButtonBuilder()
+        .setCustomId("hello")
+        .setLabel("Say Hello")
+        .setStyle("primary")
+
+    const row =
+      new ActionRowBuilder()
+        .addComponents(button)
+
+    await interaction.reply({
+      content: "Click the button!",
+      components: [row]
+    })
+  }
+)
+
+Handle the button:
+
+client.on(
+  "interaction",
+  async interaction => {
+    if (
+      interaction.type === "button" &&
+      interaction.customId === "hello"
+    ) {
+      await interaction.reply("Hello!")
+    }
+  }
+)
+
+---
+
+📋 Select Menus
+
+const {
+  SelectMenuBuilder,
+  ActionRowBuilder
+} = require("simple-discord-bot.js")
+
+const menu =
+  new SelectMenuBuilder()
+    .setCustomId("color")
+    .setPlaceholder(
+      "Choose a color"
+    )
+    .addOptions(
+      {
+        label: "Red",
+        value: "red"
+      },
+      {
+        label: "Blue",
+        value: "blue"
+      },
+      {
+        label: "Green",
+        value: "green"
+      }
+    )
+
+const row =
+  new ActionRowBuilder()
+    .addComponents(menu)
+
+await interaction.reply({
+  content: "Choose a color:",
+  components: [row]
 })
 
-client.login("YOUR_BOT_TOKEN")
+Handle the menu:
 
-Simple
-
-Lightweight
-
-Beginner friendly
-
----
-
-npm
-
-Install the latest version
-
-npm install simple-discord-bot.js
-
-<a href="https://www.npmjs.com/package/simple-discord-bot.js">
-  <img src="https://img.shields.io/badge/npm-simple--discord--bot.js-red?style=for-the-badge&logo=npm" alt="npm">
-</a>---
-
-Contributing
-
-Contributions and suggestions are welcome.
-
-If you find a bug or have an idea for a feature, open an issue or submit a pull request.
+client.on(
+  "interaction",
+  async interaction => {
+    if (
+      interaction.type === "selectMenu" &&
+      interaction.customId === "color"
+    ) {
+      await interaction.reply(
+        `Selected: ${interaction.values.join(", ")}`
+      )
+    }
+  }
+)
 
 ---
 
-License
+⏳ Deferred Replies
 
-MIT License
+Useful when your bot needs more time before responding.
+
+client.command(
+  "loading",
+  async interaction => {
+    await interaction.deferReply()
+
+    await new Promise(
+      resolve =>
+        setTimeout(resolve, 3000)
+    )
+
+    await interaction.editReply(
+      "Finished!"
+    )
+  }
+)
 
 ---
 
-<div align="center"><img src="assets/file_000000003e4082079abfdbd37db63419.png" width="80" alt="simple-discord-bot.js"><strong>simple-discord-bot.js</strong>
+✏️ Edit Interaction Replies
 
-<p>A simple Discord bot library for Node.js</p></div>
+await interaction.reply(
+  "Original message"
+)
+
+await interaction.editReply(
+  "Edited message"
+)
+
+---
+
+🗑️ Delete Interaction Replies
+
+await interaction.reply(
+  "This will disappear."
+)
+
+await interaction.deleteReply()
+
+---
+
+🔐 Permissions
+
+Check a member's Discord permissions:
+
+const isAdmin =
+  interaction.member.permissions.has(
+    "Administrator"
+)
+
+if (!isAdmin) {
+  await interaction.reply(
+    "You need Administrator permission."
+  )
+
+  return
+}
+
+Other permissions can be checked:
+
+interaction.member.permissions.has(
+  "KickMembers"
+)
+
+interaction.member.permissions.has(
+  "BanMembers"
+)
+
+interaction.member.permissions.has(
+  "ManageMessages"
+)
+
+interaction.member.permissions.has(
+  "SendMessages"
+)
+
+---
+
+🛠️ Developer Utilities
+
+Check whether the client is ready:
+
+if (client.isReady()) {
+  console.log("Bot is ready!")
+}
+
+Get uptime:
+
+console.log(client.uptime)
+
+Get the application ID:
+
+console.log(client.applicationId)
+
+Get the logged-in user:
+
+console.log(client.user.username)
+
+---
+
+❌ API Errors
+
+SimpleDiscord.js provides "DiscordAPIError" for Discord API failures.
+
+const {
+  DiscordAPIError
+} = require("simple-discord-bot.js")
+
+client.on(
+  "error",
+  error => {
+    if (
+      error instanceof DiscordAPIError
+    ) {
+      console.log(
+        "Discord API Error"
+      )
+
+      console.log(
+        "Code:",
+        error.code
+      )
+
+      console.log(
+        "Status:",
+        error.status
+      )
+
+      console.log(
+        "Method:",
+        error.method
+      )
+
+      console.log(
+        "Path:",
+        error.path
+      )
+
+      console.log(
+        "Message:",
+        error.message
+      )
+    }
+  }
+)
+
+---
+
+💬 Messages
+
+Listen for messages:
+
+client.on(
+  "message",
+  async message => {
+    console.log(
+      message.content
+    )
+  }
+)
+
+Reply:
+
+await message.reply(
+  "Hello!"
+)
+
+Edit:
+
+await message.edit(
+  "Edited!"
+)
+
+Delete:
+
+await message.delete()
+
+---
+
+🧱 Action Rows
+
+Action rows contain Discord message components such as buttons and select menus.
+
+const row =
+  new ActionRowBuilder()
+    .addComponents(
+      button
+    )
+
+Components can also be replaced:
+
+row.setComponents(
+  button
+)
+
+---
+
+📚 API Overview
+
+Client
+
+Client
+├── login()
+├── destroy()
+├── command()
+├── removeCommand()
+├── getCommand()
+├── hasCommand()
+├── isReady()
+├── uptime
+├── user
+└── applicationId
+
+Builders
+
+EmbedBuilder
+ButtonBuilder
+SelectMenuBuilder
+ActionRowBuilder
+
+---
+
+🗺️ Roadmap
+
+0.1.x — Core Foundation
+
+- ✅ Discord Gateway connection
+- ✅ Slash commands
+- ✅ Command options
+- ✅ Messages
+- ✅ Message editing
+- ✅ Message deletion
+- ✅ Permissions
+- ✅ Embeds
+- ✅ Embed fields
+- ✅ Buttons
+- ✅ Select menus
+
+0.2.x — More Discord Features
+
+- ✅ Interaction improvements
+- ✅ ActionRowBuilder
+- ✅ Command management
+- ✅ Automatic command registration
+- ✅ API errors
+- ✅ Developer utilities
+- 🔄 Documentation and examples
+- ⬜ More Discord API features
+
+0.3.x — Developer Experience
+
+- ⬜ More builder classes
+- ⬜ Easier event handling
+- ⬜ More developer utilities
+- ⬜ Expanded documentation
+
+1.0.0 — Stable Release
+
+- ⬜ Stable API
+- ⬜ Expanded Discord feature coverage
+- ⬜ Production-ready library
+- ⬜ Complete documentation
+
+---
+
+📄 License
+
+MIT
+
+---
+
+<div align="center">Made with ❤️ using JavaScript.
+
+</div>
